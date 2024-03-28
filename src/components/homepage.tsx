@@ -1,5 +1,6 @@
 import BalanceBar from "@/components/balanceBar";
 import ExpenseCard from "@/components/expenseCard";
+import AddExpense from "./addExpense";
 
 export default function HomePage() {
 
@@ -11,15 +12,17 @@ export default function HomePage() {
   return (
     <div className="w-screen h-full pt-4 pl-4 pr-6 flex flex-col items-center justify-center gap-8">
       <div
-        className="w-full h-72 rounded-3xl bg-black p-12 flex flex-col items-start justify-between"
-        style={{ height: "400px", borderRadius: "50px" , position:"sticky", top:"0", zIndex:"-1" }}
+        className="w-full h-fit rounded-3xl bg-black p-12  flex flex-col items-start justify-between gap-12"
+        style={{ borderRadius: "50px" , position:"sticky", top:"0", zIndex:"1" }}
       >
-        <h1 className="text-gray-50 font-light			 text-7xl	">Hello, Arnav</h1>
+        <h1 className="text-gray-50 font-light text-7xl	">Hello, Arnav</h1>
 
-        <p className="text-gray-50 font-light text-3xl invisible md:visible ">
+        <p className="text-gray-50 font-light text-3xl invisible h-8 md:h-fit md:visible ">
           Welcome to your personal finance tracker
         </p>
+        <AddExpense/>
         <BalanceBar />
+        
       </div>
       <div
         className="w-full rounded-3xl bg-gray-50 p-12 pb-20 flex flex-col items-start justify-start gap-4"
