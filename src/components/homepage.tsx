@@ -39,7 +39,7 @@ export default function HomePage() {
         <p className="text-black font-light text-2xl visible  pb-6">Expenses</p>
         <div className="w-full flex flex-col items-start justify-between gap-14 pt-4">
           {listExpenses.map((expense:any, index:number) => {
-            return <div className="w-full h-20 " key={index}>
+            return <div className="w-full h-20 mb-4" key={index}>
             <ExpenseCard index={index} />
           </div>
           })}
