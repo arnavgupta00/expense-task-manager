@@ -11,12 +11,13 @@ export default function AddExpense() {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="w-full h-fit  flex flex-col items-end justify-center ">
+    <div className="w-full h-fit  flex flex-col items-end justify-center " style={{marginBottom:"20px"}}>
       <div
         onClick={() => setShowMenu(!showMenu)}
         className={`text-${showMenu ? "black" : "gray-50"} bg-${
           showMenu ? "gray-50" : "transparent"
         } rounded-full p-2 rounded-br-none rounded-bl-none transition-colors duration-300 cursor-pointer`}
+        style={{marginBottom:"-20px"}}
       >
         <motion.div
           initial={false}
