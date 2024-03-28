@@ -12,14 +12,16 @@ export default function HomePage() {
   return (
     <div className="w-screen h-full pt-4 pl-4 pr-6 flex flex-col items-center justify-center gap-8">
       <div
-        className="w-full h-fit rounded-3xl bg-black p-12  flex flex-col items-start justify-between gap-12"
+        className="w-full h-fit rounded-3xl bg-black p-12  flex flex-col items-start justify-between gap-8"
         style={{ borderRadius: "50px" , position:"sticky", top:"0", zIndex:"1" }}
       >
+        <div>
         <h1 className="text-gray-50 font-light text-7xl	">Hello, Arnav</h1>
 
-        <p className="text-gray-50 font-light text-3xl invisible h-8 md:h-fit md:visible ">
+        <p className="text-gray-50 font-light text-3xl collapse h-8 md:h-fit md:visible ">
           Welcome to your personal finance tracker
         </p>
+        </div>
         <AddExpense/>
         <BalanceBar />
         
