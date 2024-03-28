@@ -12,10 +12,19 @@ export default function AddExpense() {
 
   return (
     <div className="w-full h-fit  flex flex-col items-end justify-center ">
-      <div onClick={() => setShowMenu(!showMenu)} className={`text-${showMenu ? "black" : "gray-50"} bg-${showMenu ? "gray-50" : "transparent"} rounded-full p-2 rounded-br-none rounded-bl-none transition-colors duration-300 cursor-pointer`}>
-        <div className={`rotate-${showMenu ? "45" : "0"} transition-transform duration-300`}>
+      <div
+        onClick={() => setShowMenu(!showMenu)}
+        className={`text-${showMenu ? "black" : "gray-50"} bg-${
+          showMenu ? "gray-50" : "transparent"
+        } rounded-full p-2 rounded-br-none rounded-bl-none transition-colors duration-300 cursor-pointer`}
+      >
+        <motion.div
+          initial={false}
+          animate={{ rotate: showMenu ? 45 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <CirclePlus size={52} />
-        </div>
+        </motion.div>
       </div>
       <AnimatePresence>
         {showMenu && (
@@ -56,11 +65,31 @@ export default function AddExpense() {
                   onChange={(e) => setCategory(e.target.value)}
                   className="w-4 text-black h-fit bg-transparent p-2 pl-0 pb-0 border-0  border-black border-solid"
                 >
-                  <option className="text-black bg-gray-50 p-8 w-12 text-xs border-4  border-black border-solid active:bg-black focus:bg-black hover:bg-black" value="">Select Category</option>
-                  <br className="text-black"/>
-                  <option className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid" value="option1">Option 1</option>
-                  <option className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid" value="option2">Option 2</option>
-                  <option className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid" value="option3">Option 3</option>
+                  <option
+                    className="text-black bg-gray-50 p-8 w-12 text-xs border-4  border-black border-solid active:bg-black focus:bg-black hover:bg-black"
+                    value=""
+                  >
+                    Select Category
+                  </option>
+                  <br className="text-black" />
+                  <option
+                    className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid"
+                    value="option1"
+                  >
+                    Option 1
+                  </option>
+                  <option
+                    className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid"
+                    value="option2"
+                  >
+                    Option 2
+                  </option>
+                  <option
+                    className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid"
+                    value="option3"
+                  >
+                    Option 3
+                  </option>
                 </select>
               </div>
               <button className="w-fit h-fit p-2 pl-3 pr-3 text-bg-gray-50 bg-black active:bg-gray-50 active:text-black rounded flex flex-row items-center justify-between">
