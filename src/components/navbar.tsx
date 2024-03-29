@@ -12,8 +12,11 @@ import { useState } from "react";
 import SignUp from "@/components/signup";
 import SignIn from "@/components/signin";
 import { AnimatePresence, motion } from "framer-motion";
+import { signOut } from "next-auth/react";
 
-export default function Navbar() {
+
+
+export default function Navbar(props:{authenticated:boolean}) {
   const LoggedIn = false;
   const router = useRouter();
 
@@ -56,7 +59,7 @@ export default function Navbar() {
           <div className="w-10 h-10 bg-gray-50 rounded-full border-transparent border-0"></div>
         </DropdownTrigger>
         <div className="border-none">
-          {LoggedIn ? (
+          {props.authenticated ? (
             <DropdownMenu
               aria-label="Static Actions"
               className="w-fit h-fit p-2 bg-gray-50 rounded-3xl border-none "
@@ -79,6 +82,7 @@ export default function Navbar() {
                 className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-red-500 rounded-b-3xl text-lg font-sans  font-semibold "
                 key="logout"
                 variant="solid"
+                onClick={() => {signOut()}}
               >
                 Log Out
               </DropdownItem>
