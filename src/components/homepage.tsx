@@ -1,6 +1,7 @@
 import BalanceBar from "@/components/balanceBar";
 import ExpenseCard from "@/components/expenseCard";
-import AddExpense from "./addExpense";
+import AddExpense from "@/components/addExpense";
+import Navbar from "@/components/navbar";
 
 export default function HomePage() {
   const listExpenses = [
@@ -19,8 +20,9 @@ export default function HomePage() {
 
   return (
     <div className="w-screen h-full pt-4 pl-4 pr-6 flex flex-col items-center justify-center gap-8">
+      <Navbar />
       <div
-        className="w-full h-fit rounded-3xl bg-black p-12  flex flex-col items-start justify-between gap-8"
+        className="w-full h-fit rounded-3xl bg-black p-8 pt-0  flex flex-col items-start justify-between gap-8"
         style={{
           borderRadius: "50px",
           position: "sticky",
