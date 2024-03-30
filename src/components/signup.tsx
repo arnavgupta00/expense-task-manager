@@ -36,7 +36,11 @@ export default function SignUpForm(props: {
       });
 
       console.log("Sign up successful:", response.data);
-
+      await signIn("credentials", {
+        username: email,
+        password: password,
+        callbackUrl: "/",
+      });
       setName("");
       setEmail("");
       setPassword("");
@@ -112,15 +116,7 @@ export default function SignUpForm(props: {
               Sign Up
             </button>
             <hr className="border-1 border-gray-300" />
-            <div className="p-4 pl-0 pr-0">
-              <button
-                className="w-full bg-black text-gray-50 text-sm p-2 rounded-md hover:bg-gray-400 active:bg-gray-50 active:text-black"
-                type="submit"
-                onClick={() => signIn("google", { callbackUrl: "/" })}
-              >
-                Sign in with Google
-              </button>
-            </div>
+           
           </CardContent>
         </Card>
       </form>

@@ -1,11 +1,11 @@
 import { prismaConnect } from "@/db/prismaGenerate";
 import { NextRequest, NextResponse } from "next/server";
+import bson from "bson";
 
 async function handler(request: Request) {
   try {
     const prisma = prismaConnect;
     const body = await request.json();
-
     const {name, email, password } = body;
 
     if (!email || !password) {
@@ -29,7 +29,7 @@ async function handler(request: Request) {
         name:name,
         email: email,
         password: password,
-        categories: [],
+        categories: "",
       },
     });
 

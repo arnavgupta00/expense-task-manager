@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prismaConnect } from "@/db/prismaGenerate";
 import GoogleProvider from "next-auth/providers/google";
+import { signOut } from "next-auth/react";
 
 export const NEXT_AUTH_CONFIG = {
   providers: [
@@ -12,7 +13,7 @@ export const NEXT_AUTH_CONFIG = {
       },
       async authorize(
         credentials: Record<"username" | "password", string> | undefined
-      ) {
+      ): Promise<any | null> {
         const prisma = prismaConnect;
         const existingUser = await prisma.user.findUnique({
           where: {
@@ -23,12 +24,13 @@ export const NEXT_AUTH_CONFIG = {
 
         if (existingUser) {
           return {
-            id: existingUser.id,
-            name: existingUser.name ,
+            id: existingUser.id.toString(),
+            name: existingUser.name,
             email: existingUser.email,
             categories: ["asgagage", "asgagh"],
           };
         } else {
+          signOut();
           return null;
         }
       },
