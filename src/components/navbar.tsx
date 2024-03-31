@@ -55,7 +55,7 @@ export default function Navbar(props: { authenticated: boolean , session?: any})
       </AnimatePresence>
       <Dropdown>
         <DropdownTrigger>
-          {props.session.user.image ?<div className="bg-transparent rounded-full border-transparent border-0">
+          {props?.session?.user?.image ?<div className="bg-transparent rounded-full border-transparent border-0">
             <User
               name=""
               description=""
