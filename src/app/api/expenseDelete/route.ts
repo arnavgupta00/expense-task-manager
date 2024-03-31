@@ -31,7 +31,7 @@ async function handler(request: Request) {
       return NextResponse.json({ error: "Expense not found" }, { status: 404 });
     }
 
-    if (existingExpense.userEmail !== userEmail) {
+    if (existingExpense?.userEmail !== userEmail) {
       return NextResponse.json({ error: "Unauthorized", message: "User is not authorized to delete this expense" }, { status: 403 });
     }
 
