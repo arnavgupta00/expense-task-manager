@@ -5,6 +5,7 @@ import AddExpense from "@/components/addExpense";
 import Navbar from "@/components/navbar";
 import { getServerSession } from "next-auth";
 import { NEXT_AUTH_CONFIG } from "./authConfig";
+import ListExpenses from "./listExpenses";
 
 export default async function HomePage() {
   const listExpenses = [
@@ -31,7 +32,7 @@ export default async function HomePage() {
   console.log("fasf",session);
   return (
     <div className="w-screen h-full pt-4 pl-4 pr-6 flex flex-col items-center justify-center gap-8">
-      <Navbar authenticated={authenticated}/>
+      <Navbar authenticated={authenticated} session={session}/>
       <div
         className="w-full h-fit rounded-3xl bg-black p-8 pt-0  flex flex-col items-start justify-between gap-8"
         style={{
@@ -48,47 +49,11 @@ export default async function HomePage() {
             Welcome to your personal finance tracker
           </p>
         </div>
-        <AddExpense />
-        <BalanceBar />
+        <AddExpense session={session} />
+        
       </div>
 
-      <div
-        className="w-full rounded-3xl bg-gray-50 p-12 pb-20 flex flex-col items-start justify-start gap-4"
-        style={{
-          minHeight: "400px",
-          height: "700px",
-          borderRadius: "50px",
-          position: "sticky",
-          top: "0",
-          zIndex: "5",
-          overflowY: "scroll",
-        }}
-      >
-          <div className="w-full flex flex-row items-start justify-between gap-2">
-            <button className="w-1/3 h-8 rounded text-black focus:text-gray-50 bg-gray-300 pl-4 pr-4 hover:bg-gray-500 focus:bg-black">
-              Today
-            </button>
-            <button className="w-1/3 h-8 rounded text-black focus:text-gray-50 bg-gray-300 pl-4 pr-4 hover:bg-gray-500 focus:bg-black">
-              Week
-            </button>
-            <button className="w-1/3 h-8 rounded text-black focus:text-gray-50 bg-gray-300 pl-4 pr-4 hover:bg-gray-500 focus:bg-black">
-              Month
-            </button>
-          </div>
-          <p className="text-black font-light text-2xl visible  pb-6">
-            Expenses
-          </p>
-
-          <div className="w-full flex flex-col items-start justify-between gap-14 pt-4">
-            {listExpenses.map((expense: any, index: number) => {
-              return (
-                <div className="w-full h-20 mb-4" key={index}>
-                  <ExpenseCard index={index} />
-                </div>
-              );
-            })}
-          </div>
-      </div>
+      <ListExpenses session={session} />
     </div>
   );
 }

@@ -13,10 +13,9 @@ import SignUp from "@/components/signup";
 import SignIn from "@/components/signin";
 import { AnimatePresence, motion } from "framer-motion";
 import { signOut } from "next-auth/react";
+import { User, Link } from "@nextui-org/react";
 
-
-
-export default function Navbar(props:{authenticated:boolean}) {
+export default function Navbar(props: { authenticated: boolean , session: any}) {
   const LoggedIn = false;
   const router = useRouter();
 
@@ -56,7 +55,18 @@ export default function Navbar(props:{authenticated:boolean}) {
       </AnimatePresence>
       <Dropdown>
         <DropdownTrigger>
-          <div className="w-10 h-10 bg-gray-50 rounded-full border-transparent border-0"></div>
+          {props.session.user.image ?<div className="bg-transparent rounded-full border-transparent border-0">
+            <User
+              name=""
+              description=""
+              avatarProps={{
+                src: "props.session.user.image",
+              }}
+            />
+          </div>:<div className="w-10 h-10 bg-gray-50 rounded-full border-transparent border-0">
+            
+            </div>}
+
         </DropdownTrigger>
         <div className="border-none">
           {props.authenticated ? (
@@ -82,7 +92,9 @@ export default function Navbar(props:{authenticated:boolean}) {
                 className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-red-500 rounded-b-3xl text-lg font-sans  font-semibold "
                 key="logout"
                 variant="solid"
-                onClick={() => {signOut()}}
+                onClick={() => {
+                  signOut();
+                }}
               >
                 Log Out
               </DropdownItem>

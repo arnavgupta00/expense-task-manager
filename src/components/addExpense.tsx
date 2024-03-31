@@ -1,14 +1,64 @@
 "use client";
 
 import { CirclePlus, Send } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
-export default function AddExpense() {
+export default function AddExpense(props: { session: any}) {
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const [category, setCategory] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
+  
+  const [period, setPeriod] = useState("Today");
+  const [listExpenses, setListExpenses] = useState([]);
+  const [uniqueCategories, setUniqueCategories] = useState([]);
+
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post("/api/expenseAdd", {
+        amount : expenseAmount,
+        category: category,
+        description: expenseName,
+        userEmail: props.session.user.email,
+
+      });
+
+      console.log("Add Expense successful:", response.data);
+      
+      setExpenseName("");
+      setExpenseAmount("");
+      setCategory("");
+      setShowMenu(!showMenu);
+      window.location.reload();
+
+    } catch (error) {
+      console.error("Error Adding Expense:", error);
+    }
+  };
+  const handleFetch = async () => {
+    try {
+      const response = await axios.post("/api/expenseFetch", {
+        userEmail: props.session.user.email,
+        period: period,
+      });
+
+      console.log("Fetched Expense successful:", response.data);
+      setListExpenses(response.data.periodExpenses);
+      setUniqueCategories(Array.from(new Set(response.data.periodExpenses.map((expense:any) => expense.category))));
+    } catch (error) {
+      console.error("Error Fetching Expense:", error);
+    }
+  };
+  useEffect(() => {
+    handleFetch();
+  }, [period]);
 
   return (
     <div className="w-full h-fit  flex flex-col items-end justify-center " style={{marginBottom:"20px"}}>
@@ -73,27 +123,19 @@ export default function AddExpense() {
                     Select Category
                   </option>
                   <br className="text-black" />
-                  <option
+                  {uniqueCategories.map((category) => {
+                    return <option
                     className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid"
                     value="option1"
                   >
-                    Option 1
+                    {category}
                   </option>
-                  <option
-                    className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid"
-                    value="option2"
-                  >
-                    Option 2
-                  </option>
-                  <option
-                    className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid"
-                    value="option3"
-                  >
-                    Option 3
-                  </option>
+                  })}
+                 
+                  
                 </select>
               </div>
-              <button className="w-fit h-fit p-2 pl-3 pr-3 text-bg-gray-50 bg-black active:bg-gray-50 active:text-black rounded flex flex-row items-center justify-between">
+              <button onClick={(e)=>handleSubmit(e)} className="w-fit h-fit p-2 pl-3 pr-3 text-bg-gray-50 bg-black active:bg-gray-50 active:text-black rounded flex flex-row items-center justify-between">
                 <Send size={25} />
               </button>
             </div>

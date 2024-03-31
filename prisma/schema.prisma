@@ -25,11 +25,11 @@ model User {
 }
 
 model Expense {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   amount      Float
   category    String
   description String?
-  userId      Int
-  user        User      @relation(fields: [userId], references: [id])
-  createdAt   DateTime  @default(now())
+  userEmail   String   // Change userId to userEmail
+  user        User     @relation(fields: [userEmail], references: [email]) // Modify relation
+  createdAt   DateTime @default(now())
 }

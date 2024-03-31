@@ -30,7 +30,6 @@ export const NEXT_AUTH_CONFIG = {
             categories: ["asgagage", "asgagh"],
           };
         } else {
-          signOut();
           return null;
         }
       },
