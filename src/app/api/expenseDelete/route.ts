@@ -1,7 +1,14 @@
 import { prismaConnect } from "@/db/prismaGenerate";
 import { NextRequest, NextResponse } from "next/server";
 import bson from "bson";
-
+interface Expense {
+  id: number;
+  amount: number;
+  category: string;
+  description: string | null;
+  createdAt: Date;
+  userEmail: string; // Add userEmail property
+}
 async function handler(request: Request) {
   try {
     const prisma = prismaConnect;
@@ -21,7 +28,7 @@ async function handler(request: Request) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    const existingExpense = await prisma.expense.findUnique({
+    const existingExpense:Expense|null = await prisma.expense.findUnique({
       where: {
         id: parseInt(expenseId),
       },
