@@ -8,7 +8,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import SignUp from "@/components/signup";
 import SignIn from "@/components/signin";
 import { AnimatePresence, motion } from "framer-motion";
@@ -21,6 +21,12 @@ export default function Navbar(props: { authenticated: boolean , session?: any})
 
   const [showmenuSignUp, setShowMenuSignUp] = useState(false);
   const [showmenuSignIn, setShowMenuSignIn] = useState(false);
+
+  useEffect(() => {
+    if(!props.authenticated){
+      setShowMenuSignIn(true);
+    }
+  }, []);
 
   return (
     <div
@@ -60,7 +66,7 @@ export default function Navbar(props: { authenticated: boolean , session?: any})
               name=""
               description=""
               avatarProps={{
-                src: "props.session.user.image",
+                src: props.session.user.image,
               }}
             />
           </div>:<div className="w-10 h-10 bg-gray-50 rounded-full border-transparent border-0">

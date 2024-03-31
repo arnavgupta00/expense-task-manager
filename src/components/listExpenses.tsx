@@ -29,7 +29,7 @@ export default function ListExpenses(props: { session?: any }) {
     return categoryExpenses;
   };
 
-  // Function to calculate Expense Trends
+  //  Expense Trends
   const getExpenseTrends = (expenses: any[]) => {
     const trends: { [key: string]: number } = {}; // Add type annotation for trends
     expenses.forEach((expense) => {
@@ -122,7 +122,7 @@ export default function ListExpenses(props: { session?: any }) {
       <div className="w-full flex flex-row items-start justify-between gap-2">
         <button
           onClick={() => setPeriod("Today")}
-          className="w-1/3 h-8 rounded text-black focus:text-gray-50 bg-gray-300 pl-4 pr-4 hover:bg-gray-500 focus:bg-black"
+          className="w-1/3 h-8 rounded text-black  bg-gray-300 pl-4 pr-4 hover:bg-gray-500 "
           style={{
             backgroundColor: period === "Today" ? "black" : "",
             color: period === "Today" ? "white" : "",
@@ -132,20 +132,20 @@ export default function ListExpenses(props: { session?: any }) {
         </button>
         <button
           onClick={() => setPeriod("Week")}
-          className="w-1/3 h-8 rounded text-black focus:text-gray-50 bg-gray-300 pl-4 pr-4 hover:bg-gray-500 focus:bg-black"
+          className="w-1/3 h-8 rounded text-black  bg-gray-300 pl-4 pr-4 hover:bg-gray-500 "
           style={{
             backgroundColor: period === "Week" ? "black" : "",
-            color: period === "Today" ? "white" : "",
+            color: period === "Week" ? "white" : "",
           }}
         >
           Week
         </button>
         <button
           onClick={() => setPeriod("Month")}
-          className="w-1/3 h-8 rounded text-black focus:text-gray-50 bg-gray-300 pl-4 pr-4 hover:bg-gray-500 focus:bg-black"
+          className="w-1/3 h-8 rounded text-black  bg-gray-300 pl-4 pr-4 hover:bg-gray-500 "
           style={{
             backgroundColor: period === "Month" ? "black" : "",
-            color: period === "Today" ? "white" : "",
+            color: period === "Month" ? "white" : "",
           }}
         >
           Month
