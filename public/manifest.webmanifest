@@ -4,7 +4,7 @@
     "display": "browser",
     "scope": "/",
     "start_url": "/",
-    "name": "Expezo",
+    "name": "Expezo - Expense Tracker",
     "short_name": "Expezo",
     "description": "The expense tracker you need",
     "icons": [

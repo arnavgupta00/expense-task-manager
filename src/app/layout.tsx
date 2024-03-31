@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Expezo",
   description: "The expense tracker you need",
-  manifest:"/manifest.json",
+  manifest:"/manifest.webmanifest"
 };
 
 export default function RootLayout({
