@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { Session } from "inspector";
 
-export default function AddExpense(props: { session: any}) {
+export default function AddExpense(props: { session?: any}) {
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -19,6 +20,8 @@ export default function AddExpense(props: { session: any}) {
 
 
   const handleSubmit = async (event: any) => {
+
+    if(props.session == undefined)return;
     event.preventDefault();
 
     try {
@@ -43,6 +46,8 @@ export default function AddExpense(props: { session: any}) {
     }
   };
   const handleFetch = async () => {
+    if(props.session == undefined)return;
+
     try {
       const response = await axios.post("/api/expenseFetch", {
         userEmail: props.session.user.email,

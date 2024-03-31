@@ -6,7 +6,7 @@ import { use, useEffect, useState } from "react";
 import ExpenseChart from "@/components/chart";
 import BalanceBar from "@/components/balanceBar";
 
-export default function ListExpenses(props: { session: any }) {
+export default function ListExpenses(props: { session?: any }) {
   const [period, setPeriod] = useState("Today");
   const [listExpenses, setListExpenses] = useState([]);
   const [budget, setBudget] = useState(5000);
@@ -44,6 +44,8 @@ export default function ListExpenses(props: { session: any }) {
 
   const handleDelete = async (event: any, id: any) => {
     event.preventDefault();
+    if(props.session === undefined)return;
+
 
     try {
       const response = await axios.post("/api/expenseDelete", {
@@ -60,6 +62,8 @@ export default function ListExpenses(props: { session: any }) {
   };
 
   const handleSubmit = async () => {
+    if(props.session === undefined)return;
+
     try {
       const response = await axios.post("/api/expenseFetch", {
         userEmail: props.session.user.email,

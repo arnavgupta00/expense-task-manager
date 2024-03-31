@@ -15,7 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { signOut } from "next-auth/react";
 import { User, Link } from "@nextui-org/react";
 
-export default function Navbar(props: { authenticated: boolean , session: any}) {
+export default function Navbar(props: { authenticated: boolean , session?: any}) {
   const LoggedIn = false;
   const router = useRouter();
 
