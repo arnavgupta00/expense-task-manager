@@ -37,10 +37,15 @@ async function handler(request: Request) {
     if (!existingExpense) {
       return NextResponse.json({ error: "Expense not found" }, { status: 404 });
     }
-
-    if (existingExpense?.userEmail !== userEmail) {
-      return NextResponse.json({ error: "Unauthorized", message: "User is not authorized to delete this expense" }, { status: 403 });
+    if (existingExpense !== null) {
+      if (existingExpense?.userEmail !== userEmail) {
+        return NextResponse.json({ error: "Unauthorized", message: "User is not authorized to delete this expense" }, { status: 403 });
+      }
+    } else {
+      return NextResponse.json({ error: "Expense not found" }, { status: 404 });
+      console.error("Expense not found");
     }
+    
 
     await prisma.expense.delete({
       where: {
