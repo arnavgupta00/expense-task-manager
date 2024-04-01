@@ -7,7 +7,9 @@ import { getServerSession } from "next-auth";
 import { NEXT_AUTH_CONFIG } from "./authConfig";
 import ListExpenses from "./listExpenses";
 
+
 export default async function HomePage() {
+
   const listExpenses = [
     "asgaga",
     "Asgahah",

@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.5",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.14",
     "@nextui-org/react": "^2.2.10",
     "@prisma/adapter-pg": "^5.11.0",
     "@prisma/client": "^5.11.0",
@@ -33,6 +36,7 @@
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
+    "react-spinners": "^0.13.8",
     "react-stickynode": "^4.1.1",
     "resize-observer-polyfill": "^1.5.1",
     "tailwind-merge": "^2.2.2",

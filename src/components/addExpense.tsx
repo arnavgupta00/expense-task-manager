@@ -6,47 +6,57 @@ import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Session } from "inspector";
+import { Spinner } from "@nextui-org/react";
+import ClipLoader from "react-spinners/ClipLoader";
 
-export default function AddExpense(props: { session?: any}) {
+
+
+export default function AddExpense(props: { session?: any }) {
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const [category, setCategory] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
-  
+
   const [period, setPeriod] = useState("Today");
   const [listExpenses, setListExpenses] = useState([]);
   const [uniqueCategories, setUniqueCategories] = useState([]);
 
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    setLoading(true);
 
-    if(props.session == undefined)return;
+    if (props.session == undefined) {
+      setLoading(false);
+      return;
+    }
     event.preventDefault();
 
     try {
       const response = await axios.post("/api/expenseAdd", {
-        amount : expenseAmount,
+        amount: expenseAmount,
         category: category,
         description: expenseName,
         userEmail: props.session.user.email,
-
       });
 
       console.log("Add Expense successful:", response.data);
-      
+
       setExpenseName("");
       setExpenseAmount("");
       setCategory("");
       setShowMenu(!showMenu);
-      window.location.reload();
+      setLoading(false);
 
+      window.location.reload();
     } catch (error) {
       console.error("Error Adding Expense:", error);
+      setLoading(false);
     }
   };
   const handleFetch = async () => {
-    if(props.session == undefined)return;
+    if (props.session == undefined) return;
 
     try {
       const response = await axios.post("/api/expenseFetch", {
@@ -56,7 +66,13 @@ export default function AddExpense(props: { session?: any}) {
 
       console.log("Fetched Expense successful:", response.data);
       setListExpenses(response.data.periodExpenses);
-      setUniqueCategories(Array.from(new Set(response.data.periodExpenses.map((expense:any) => expense.category))));
+      setUniqueCategories(
+        Array.from(
+          new Set(
+            response.data.periodExpenses.map((expense: any) => expense.category)
+          )
+        )
+      );
     } catch (error) {
       console.error("Error Fetching Expense:", error);
     }
@@ -66,13 +82,16 @@ export default function AddExpense(props: { session?: any}) {
   }, [period]);
 
   return (
-    <div className="w-full h-fit  flex flex-col items-end justify-center " style={{marginBottom:"20px"}}>
+    <div
+      className="w-full h-fit  flex flex-col items-end justify-center "
+      style={{ marginBottom: "20px" }}
+    >
       <div
         onClick={() => setShowMenu(!showMenu)}
         className={`text-${showMenu ? "black" : "gray-50"} bg-${
           showMenu ? "gray-50" : "transparent"
         } rounded-full p-2 rounded-br-none rounded-bl-none transition-colors duration-300 cursor-pointer`}
-        style={{marginBottom:"-20px"}}
+        style={{ marginBottom: "-20px" }}
       >
         <motion.div
           initial={false}
@@ -129,19 +148,32 @@ export default function AddExpense(props: { session?: any}) {
                   </option>
                   <br className="text-black" />
                   {uniqueCategories.map((category) => {
-                    return <option
-                    className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid"
-                    value="option1"
-                  >
-                    {category}
-                  </option>
+                    return (
+                      <option
+                        className="text-black bg-gray-50 p-8 text-xs border-2 border-b-2 border-black border-solid"
+                        value="option1"
+                      >
+                        {category}
+                      </option>
+                    );
                   })}
-                 
-                  
                 </select>
               </div>
-              <button onClick={(e)=>handleSubmit(e)} className="w-fit h-fit p-2 pl-3 pr-3 text-bg-gray-50 bg-black active:bg-gray-50 active:text-black rounded flex flex-row items-center justify-between">
-                <Send size={25} />
+              <button
+                onClick={(e) => handleSubmit(e)}
+                className="w-fit h-fit p-2 pl-3 pr-3 text-bg-gray-50 bg-black active:bg-gray-50 active:text-black rounded flex flex-row items-center justify-between"
+              >
+                {loading ? (
+                  <ClipLoader
+                    color="white"
+                    loading={loading}
+                    size={25}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                ) : (
+                  <Send size={25} />
+                )}
               </button>
             </div>
           </motion.div>
