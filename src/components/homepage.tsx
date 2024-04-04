@@ -42,6 +42,8 @@ export default async function HomePage() {
           position: "sticky",
           top: "0",
           zIndex: "1",
+          maxWidth: "800px",
+
         }}
       >
         <div>

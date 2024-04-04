@@ -59,7 +59,7 @@ export default function ListExpenses(props: { session?: any }) {
         userEmail: props.session.user.email,
       });
 
-      console.log("Deleted Expense successful:", response.data);
+      //console.log("Deleted Expense successful:", response.data);
 
       handleSubmit();
       setLoading(false);
@@ -77,12 +77,13 @@ export default function ListExpenses(props: { session?: any }) {
     }
 
     try {
+      //console.log("Fetching Expenses",props.session.user.email, period);
       const response = await axios.post("/api/expenseFetch", {
         userEmail: props.session.user.email,
         period: period,
       });
 
-      console.log("Fetched Expense successful:", response.data);
+      //console.log("Fetched Expense successful:", response.data);
       setListExpenses(response.data.periodExpenses);
       setLoading(false);
     } catch (error) {
@@ -104,6 +105,7 @@ export default function ListExpenses(props: { session?: any }) {
         top: "0",
         zIndex: "5",
         overflowY: "scroll",
+        maxWidth: "800px",
       }}
     >
       {loading ? (

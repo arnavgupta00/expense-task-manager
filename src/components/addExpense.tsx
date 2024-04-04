@@ -9,8 +9,6 @@ import { Session } from "inspector";
 import { Spinner } from "@nextui-org/react";
 import ClipLoader from "react-spinners/ClipLoader";
 
-
-
 export default function AddExpense(props: { session?: any }) {
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
@@ -39,9 +37,10 @@ export default function AddExpense(props: { session?: any }) {
         category: category,
         description: expenseName,
         userEmail: props.session.user.email,
+        createdAt: new Date().toLocaleString(),
       });
 
-      console.log("Add Expense successful:", response.data);
+      //console.log("Add Expense successful:", response.data);
 
       setExpenseName("");
       setExpenseAmount("");
@@ -64,7 +63,7 @@ export default function AddExpense(props: { session?: any }) {
         period: period,
       });
 
-      console.log("Fetched Expense successful:", response.data);
+      //console.log("Fetched Expense successful:", response.data);
       setListExpenses(response.data.periodExpenses);
       setUniqueCategories(
         Array.from(
@@ -84,7 +83,7 @@ export default function AddExpense(props: { session?: any }) {
   return (
     <div
       className="w-full h-fit  flex flex-col items-end justify-center "
-      style={{ marginBottom: "20px" }}
+      style={{ marginBottom: "20px", maxWidth: "800px" }}
     >
       <div
         onClick={() => setShowMenu(!showMenu)}

@@ -15,7 +15,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { signOut } from "next-auth/react";
 import { User, Link } from "@nextui-org/react";
 
-export default function Navbar(props: { authenticated: boolean , session?: any}) {
+export default function Navbar(props: {
+  authenticated: boolean;
+  session?: any;
+}) {
   const LoggedIn = false;
   const router = useRouter();
 
@@ -23,7 +26,7 @@ export default function Navbar(props: { authenticated: boolean , session?: any})
   const [showmenuSignIn, setShowMenuSignIn] = useState(false);
 
   useEffect(() => {
-    if(!props.authenticated){
+    if (!props.authenticated) {
       setShowMenuSignIn(true);
     }
   }, []);
@@ -31,7 +34,7 @@ export default function Navbar(props: { authenticated: boolean , session?: any})
   return (
     <div
       className="w-full h-full flex flex-row items-center justify-end"
-      style={{ userSelect: "none", overflow: "hidden" }}
+      style={{ userSelect: "none", overflow: "hidden", maxWidth: "800px" }}
     >
       <AnimatePresence>
         {showmenuSignIn && (
@@ -61,18 +64,19 @@ export default function Navbar(props: { authenticated: boolean , session?: any})
       </AnimatePresence>
       <Dropdown>
         <DropdownTrigger>
-          {props?.session?.user?.image ?<div className="bg-transparent rounded-full border-transparent border-0">
-            <User
-              name=""
-              description=""
-              avatarProps={{
-                src: props.session.user.image,
-              }}
-            />
-          </div>:<div className="w-10 h-10 bg-gray-50 rounded-full border-transparent border-0">
-            
-            </div>}
-
+          {props?.session?.user?.image ? (
+            <div className="bg-transparent rounded-full border-transparent border-0">
+              <User
+                name=""
+                description=""
+                avatarProps={{
+                  src: props.session.user.image,
+                }}
+              />
+            </div>
+          ) : (
+            <div className="w-10 h-10 bg-gray-50 rounded-full border-transparent border-0"></div>
+          )}
         </DropdownTrigger>
         <div className="border-none">
           {props.authenticated ? (
