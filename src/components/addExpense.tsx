@@ -16,7 +16,7 @@ export default function AddExpense(props: { session?: any }) {
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
 
-  const [period, setPeriod] = useState("Today");
+  const [period, setPeriod] = useState("Week");
   const [listExpenses, setListExpenses] = useState([]);
   const [uniqueCategories, setUniqueCategories] = useState([]);
 
