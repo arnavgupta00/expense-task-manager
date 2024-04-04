@@ -77,7 +77,7 @@ export default function ExpenseCard(props: {
         }}
       >
         <p className="text-gray-50 font-light text-base">
-          {handleDateChange(props.expense.createdAt)}
+          {handleDateChange(props.expense.createdAt).split(",")[0]}
         </p>
       </div>
     </div>
