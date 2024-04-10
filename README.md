@@ -1,3 +1,18 @@
+# Expezo
+
+## This app contains a expense management system and task management system using Next.js 14
+
+## Tech Used:
+
+  - Made using Prisma as orm for MySQL db for expense management system 
+  - Sanity as cms for task management system 
+  - Authentication system with Next Auth includes Google login.
+
+
+## How to run the app
+
+It is also hosted on [https://expezo.arnavgupta.tech/]
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
