@@ -86,10 +86,11 @@ export default function Navbar(props: {
             >
               <DropdownItem
                 className="w-full h-full p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-black rounded-t-3xl text-lg font-sans font-semibold"
-                key="profile"
+                key="Home"
                 variant="solid"
+                onClick={() => router.push("/")}
               >
-                Profile
+                Home
               </DropdownItem>
               <DropdownItem
                 className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-black  text-lg font-sans  font-semibold "
@@ -117,6 +118,14 @@ export default function Navbar(props: {
             >
               <DropdownItem
                 className="w-full h-full p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-black rounded-t-3xl text-lg font-sans font-semibold"
+                key="home"
+                variant="solid"
+                onClick={() => router.push("/")}
+              >
+                Home
+              </DropdownItem>
+              <DropdownItem
+                className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-black  text-lg font-sans  font-semibold "
                 key="login"
                 variant="solid"
                 onClick={() => setShowMenuSignIn(!showmenuSignIn)}
@@ -131,10 +140,12 @@ export default function Navbar(props: {
               >
                 Sign Up
               </DropdownItem>
+              
               <DropdownItem
-                className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-red-500 rounded-b-3xl text-lg font-sans  font-semibold "
+                className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-black rounded-b-3xl text-lg font-sans  font-semibold "
                 key="taskify"
                 variant="solid"
+                onClick={() => router.push("/taskify")}
               >
                 Taskify
               </DropdownItem>
