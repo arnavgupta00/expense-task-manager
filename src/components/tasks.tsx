@@ -136,7 +136,7 @@ export default function Tasks(props: {
           listTasks.map((task: TaskPost) => {
             if (task.TaskCompletedQ === true) return;
             return (
-              <div className="min-w-full h-full p-4">
+              <div className="min-w-full h-full pt-4 pb-4">
                 <TaskCard
                   task={task}
                   deleteTaskIdOptimistic={deleteTaskIdOptimistic}
@@ -147,17 +147,17 @@ export default function Tasks(props: {
           })}
       </div>
       <div className="w-full h-full  flex flex-col justify-center items-start ">
-        <h1 className="text-gray-50 font-light text-3xl collapse h-8 md:h-fit md:visible ">
+        {listTasks.length>0 && <h1 className="text-gray-50 font-light text-3xl  h-8 md:h-fit  ">
           {" "}
           Completed Tasks
-        </h1>
+        </h1>}
 
         {listTasks &&
           listTasks.map((task: TaskPost) => {
             if (task.TaskCompletedQ === false) return;
 
             return (
-              <div className="min-w-full h-full p-4">
+              <div className="min-w-full h-full pt-4 pb-4 ">
                 <TaskCard
                   task={task}
                   deleteTaskIdOptimistic={deleteTaskIdOptimistic}

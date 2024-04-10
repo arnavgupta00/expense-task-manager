@@ -43,7 +43,7 @@ export default function TaskCard(props: {
   const [loading, setLoading] = useState(false);
   const [trashLoading, setTrashLoading] = useState(false);
   return (
-    <div className="w-full h-fit p-4  flex flex-col justify-center gap-4 items-center">
+    <div className="w-full h-fit p-2  flex flex-col justify-center gap-4 items-center">
       <div className="w-full h-fit flex flex-row justify-between items-center">
         <div>
           <h1 className="text-gray-50 font-light text-2xl">
