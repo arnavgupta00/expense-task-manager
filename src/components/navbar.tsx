@@ -95,6 +95,7 @@ export default function Navbar(props: {
                 className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-black  text-lg font-sans  font-semibold "
                 key="taskify"
                 variant="solid"
+                onClick={() => router.push("/taskify")}
               >
                 Taskify
               </DropdownItem>
