@@ -115,6 +115,18 @@ export default function SignUpForm(props: {
             >
               Sign Up
             </button>
+
+            <hr className="border-1 border-gray-300" />
+
+            <div className="p-4 pl-0 pr-0">
+                <button
+                  className="w-full bg-black text-gray-50 text-sm p-2 rounded-md hover:bg-gray-400 active:bg-gray-50 active:text-black"
+                  type="submit"
+                  onClick={() => signIn("google", { callbackUrl: "/" })}
+                >
+                  Sign Up with Google
+                </button>
+              </div>
             <hr className="border-1 border-gray-300" />
            
           </CardContent>
