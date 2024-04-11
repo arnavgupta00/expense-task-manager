@@ -2,6 +2,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { prismaConnect } from "@/db/prismaGenerate";
 import GoogleProvider from "next-auth/providers/google";
 import { signOut } from "next-auth/react";
+import { User } from "next-auth";
 
 export const NEXT_AUTH_CONFIG = {
   providers: [
@@ -41,18 +42,18 @@ export const NEXT_AUTH_CONFIG = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user, account, profile, email, credentials } : { user: any, account: any, profile: any, email: any, credentials: any }) {
+    async signIn({ user, account } : { user: User , account: any}) {
       if (account.provider === "google") {
-        // handle Google sign-in
+        console.log("User:", user);   
         const prisma = prismaConnect;
         const existingUser = await prisma.user.findUnique({
-          where: { email: email },
+          where: { email: user.email || "" },
         });
         if (!existingUser) {
           const newUser = await prisma.user.create({
             data: {
-              name: profile.name,
-              email: email,
+              name: user.name || "",
+              email: user.email || "",
               password: "", 
               categories: "",
             },
