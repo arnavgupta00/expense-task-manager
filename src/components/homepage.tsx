@@ -31,7 +31,7 @@ export default async function HomePage() {
   user?.length >= 1 ? user = user[0]?.charAt(0).toUpperCase() + user[0]?.slice(1): user = "Guest";
 
 
-  console.log("fasf",session);
+ 
   return (
     <div className="w-screen h-full pt-4 pl-4 pr-6 pb-8 flex flex-col items-center justify-center gap-8">
       <Navbar authenticated={authenticated} session={session}/>
