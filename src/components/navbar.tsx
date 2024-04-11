@@ -88,7 +88,7 @@ export default function Navbar(props: {
                 className="w-full h-full p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-black rounded-t-3xl text-lg font-sans font-semibold"
                 key="Home"
                 variant="solid"
-                onClick={() => router.push("/")}
+                onClick={() => router.push("/home")}
               >
                 Home
               </DropdownItem>
@@ -120,7 +120,7 @@ export default function Navbar(props: {
                 className="w-full h-full p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-black rounded-t-3xl text-lg font-sans font-semibold"
                 key="home"
                 variant="solid"
-                onClick={() => router.push("/")}
+                onClick={() => router.push("/home")}
               >
                 Home
               </DropdownItem>

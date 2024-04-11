@@ -1,11 +1,13 @@
 import HomePage from "@/components/homepage";
 import Image from "next/image";
-
+import { redirect } from "next/navigation";
 export default function Home() {
+
+  redirect("/home");
   return (
     <div>
       
-        <HomePage></HomePage>
+
     </div>
   );
 }
