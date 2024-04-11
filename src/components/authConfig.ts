@@ -35,12 +35,33 @@ export const NEXT_AUTH_CONFIG = {
       },
     }),
     GoogleProvider({
-        clientId: process.env.GOOGLE_CLIENT_ID || "",
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET|| ""
-      })
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
+    async signIn({ user, account, profile, email, credentials } : { user: any, account: any, profile: any, email: any, credentials: any }) {
+      if (account.provider === "google") {
+        // handle Google sign-in
+        const prisma = prismaConnect;
+        const existingUser = await prisma.user.findUnique({
+          where: { email: email },
+        });
+        if (!existingUser) {
+          const newUser = await prisma.user.create({
+            data: {
+              name: profile.name,
+              email: email,
+              password: "", 
+              categories: "",
+            },
+          });
+          console.log("New user created:", newUser);
+        }
+      }
+      return true;
+    },
     session: ({ session, token, user }: any) => {
       if (token && token.categories) {
         session.user.categories = token.categories;
