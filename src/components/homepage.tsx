@@ -4,7 +4,7 @@ import ExpenseCard from "@/components/expenseCard";
 import AddExpense from "@/components/addExpense";
 import Navbar from "@/components/navbar";
 import { getServerSession } from "next-auth";
-import { NEXT_AUTH_CONFIG } from "./authConfig";
+import { NEXT_AUTH_CONFIG } from "@/components/authConfig";
 import ListExpenses from "./listExpenses";
 
 
